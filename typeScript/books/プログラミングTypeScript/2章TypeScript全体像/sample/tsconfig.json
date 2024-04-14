@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "lib": ["es2015", "DOM"], //コードの実行環境にどのAPIが存在するか想定するための設定
+    "module": "commonjs", //どのモジュールシステムにコンパイルするか
+    "outDir": "dist", //生成したJavaScriptファイルの出力先
+    "strict": true, //できるだけ厳密な型チェックを行う。すべてのコードに型がついていることを保証する
+    "target": "ES2015" //どのJavaScriptバージョンにコンパイルするか
+  },
+  "include": ["src"] // コンパイル対象のファイルの格納先
+}
