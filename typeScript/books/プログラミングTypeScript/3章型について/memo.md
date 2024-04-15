@@ -56,3 +56,55 @@ k = l;
 ```
 
 ## 合併型と交差型
+
+`|`で合併型を、`&`で交差型を表現できる
+
+```typescript
+type GasolineCar = {
+  name: string;
+  charging: number;
+};
+type ElectriCar = {
+  name: string;
+  fuel: number;
+};
+
+let OrCar: ElectriCar | GasolineCar;
+let AndCar: GasolineCar & ElectriCar;
+```
+
+Or の場合、いづれかの型に一致する必要がある（複数も OK）
+
+```typescript
+// Orの場合はどちらかのプロパティが必要
+OrCar = {
+  name: "abc",
+  fuel: 123,
+};
+
+// Orの場合はどちらかのプロパティが必要
+OrCar = {
+  name: "abc",
+  charging: 123,
+};
+
+// Orの場合はどちらも持っていてもOK
+OrCar = {
+  name: "abc",
+  charging: 123,
+  fuel: 123,
+};
+```
+
+交差型はすべてのプロパティを持つ必要がある。
+
+```typescript
+// Andの場合は両方のプロパティが必要
+AndCar = {
+  name: "abc",
+  charging: 123,
+  fuel: 123,
+};
+```
+
+## 配列
