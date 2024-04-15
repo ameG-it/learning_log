@@ -108,3 +108,28 @@ AndCar = {
 ```
 
 ## 配列
+
+TypeScript では`T[]`と`Array<T>`の二つの構文がサポートされている
+
+```typescript
+let a: number[];
+let a: Array<number>;
+```
+
+配列と合併型を組み合わせることもできるが、
+配列をループ処理する際などに、型チェックなどの必要が出てくるため
+値を均一にすることが望ましい。
+
+```typescript
+let numStrArray: (number | string)[];
+```
+
+```typescript
+
+numStrArray.map(_=>{
+  if(typeof _ === 'number')
+  return  _ + 3
+}
+return _.toUpperCase())
+
+```
