@@ -59,9 +59,46 @@ OrCar = {
   charging: 123,
 };
 
+// Orの場合はどちらも持っていてもOK
+OrCar = {
+  name: "abc",
+  charging: 123,
+  fuel: 123,
+};
+
 // Andの場合は両方のプロパティが必要
 AndCar = {
   name: "abc",
   charging: 123,
   fuel: 123,
+};
+
+let xx: number[];
+let ss: Array<number>;
+
+let yy: (number | string)[];
+
+// タプル
+let profile1: [string, number] = ["フリーザ", 530000];
+
+//?をつけるとundefinedも許容される
+let profile2: [string, number?] = ["フリーザ"];
+
+//可変長の要素を持つタプル
+let profile3: [string, ...number[]] = ["フリーザ", 530000, 530000, 530000];
+
+// 読み取り専用の配列タプル
+let arr: readonly number[] = [1, 2, 3];
+arr[0] = 4; //エラーになる
+arr.push(4); //エラーになる
+
+let arrConcat = arr.concat(4); //エラーにならない
+
+//null型
+// 計算しようとして失敗しようとした場合など
+const calcDiv = (a: number, b: number) => {
+  if (b === 0) {
+    return null;
+  }
+  return a / b;
 };

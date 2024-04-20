@@ -133,3 +133,85 @@ numStrArray.map(_=>{
 return _.toUpperCase())
 
 ```
+
+## タプル
+
+固定長の配列を型付けするもの
+タプルは明示的に型をつける必要があり、
+角括弧`[]`から推論されることはない。
+すでに配列がそのルールに該当する。
+
+```typescript
+// タプル
+let profile1: [string, number] = ["フリーザ", 530000];
+
+//?をつけるとundefinedも許容される
+let profile2: [string, number?] = ["フリーザ"];
+
+//可変長の要素を持つタプル
+let profile3: [string, ...number[]] = ["フリーザ", 530000, 530000, 530000];
+```
+
+タプルは不均一な配列を安全にコード化できる！
+配列よりも安全性がますため、不均一なリストを扱う場面では積極的に活用すべし
+
+## 読み取り専用にする
+
+可変性を避けることでコードの可読性が増す。
+実態は通常の javascript の配列と変わらないので、
+大きな配列での Slice やスプレッド`...`を使った変更は、パフォーマンスに影響する。
+
+```typescript
+// 読み取り専用の配列タプル
+let arr: readonly number[] = [1, 2, 3];
+arr[0] = 4; //エラーになる
+arr.push(4); //エラーになる
+
+let arrConcat = arr.concat(4); //エラーにならない
+```
+
+## null undefined void never
+
+`存在しない`を表す型
+
+JavaScript にある
+
+- null
+  値が欠如している
+  計算しようとして失敗した場合など
+
+```typescript
+const calcDiv = (a: number, b: number) => {
+  if (b === 0) {
+    return null;
+  }
+  return a / b;
+};
+```
+
+- undefined
+  あるものがまだ値を持っていない
+
+TypeScript で追加
+
+- void
+  明示的に何も返さない関数の戻り値。（console.log の戻り値など）
+
+```typescript
+const hello = (): void => {
+  console.log("Hello");
+};
+```
+
+- never
+  決して戻ることのない関数の型
+  例外をスローする関数や、永久に実行される関数など
+
+```typescript
+const error = (msg: string) => {
+  throw new Error(msg);
+};
+```
+
+typescript ではコードの中で null がチェックできるので
+null ポインタを参照するような操作を事前に防ぐことができる。
